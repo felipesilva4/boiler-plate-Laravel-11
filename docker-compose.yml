@@ -1,0 +1,34 @@
+version: '3.8'
+
+services:
+    app:
+        build: .
+        container_name: laravel-app
+        volumes:
+            - .:/var/www/laravel-docker-starter-template
+        working_dir: /var/www/laravel-docker-starter-template
+        ports:
+            - "9002:8000" # Porta 8000 no container mapeada para 9002 no host
+        environment:
+            - APP_ENV=local
+            - XDEBUG_MODE=debug
+        depends_on:
+            - db
+        networks:
+            - app_network
+
+    db:
+        image: postgres:latest
+        container_name: laravel-db
+        environment:
+            POSTGRES_DB: test
+            POSTGRES_USER: test
+            POSTGRES_PASSWORD: test
+        ports:
+            - "5432:5432"
+        networks:
+            - app_network
+
+networks:
+    app_network:
+        driver: bridge

@@ -26,4 +26,4 @@ docker exec -u root -it laravel-app php artisan migrate --seed
 docker exec -d laravel-app php artisan serve --host=0.0.0.0 --port=8000
 
 
-echo "Pronto! O projeto está rodando na porta 8080."
+echo "Pronto! O projeto está rodando na porta 9002."
